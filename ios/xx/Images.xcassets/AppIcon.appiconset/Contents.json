@@ -3,13 +3,13 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Icon-Small@2x-2.png",
+      "filename" : "Icon-60.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Icon-Small@3x-1.png",
+      "filename" : "Icon-62.png",
       "scale" : "3x"
     },
     {
@@ -51,13 +51,13 @@
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "Icon-Small-1.png",
+      "filename" : "Icon-61.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "Icon-Small@2x-3.png",
+      "filename" : "Icon-63.png",
       "scale" : "2x"
     },
     {
@@ -99,13 +99,13 @@
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "Icon-76@3x.png",
+      "filename" : "Icon-Spotlight-40@3x-1.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "“108701532425141_.pic”的副本.png",
+      "filename" : "“6661532485858_.pic”的副本.png",
       "scale" : "1x"
     }
   ],

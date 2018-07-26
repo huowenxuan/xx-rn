@@ -61,14 +61,18 @@
 - (void)upload: (NSString *)urlStr {
   NSString *host = @"https://huowenxuan.leanapp.cn";
   NSString *testHost = @"http://localhost:3000";
+  
+  // stringByAddingPercentEncodingWithAllowedCharacters 会自动转换这些
+//  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"#" withString:@"%23"];
+//  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"%" withString:@"%25"];
   urlStr = [urlStr stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
   urlStr = [urlStr stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
   urlStr = [urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
   urlStr = [urlStr stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
-  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"%" withString:@"%25"];
-  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"#" withString:@"%23"];
   urlStr = [urlStr stringByReplacingOccurrencesOfString:@"=" withString:@"%3D"];
   urlStr = [NSString stringWithFormat:@"%@/api/vogue/start?url=%@", host, urlStr];
+  
+  NSLog(@"%@", urlStr);
 
   NSURL *url = [NSURL URLWithString: [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
   
