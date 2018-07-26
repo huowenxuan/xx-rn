@@ -98,7 +98,7 @@ export default class extends PureComponent<Props, State> {
       try {
         const {dispatch, types, router} = this.props
         await dispatch(types.vogue.delete)
-        this.showToast('删除成功', 'danger')
+        this.showToast('删除成功')
         this._query(false)
       } catch (e) {
         this.showToast('删除失败', 'danger')

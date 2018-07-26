@@ -3,7 +3,7 @@
  */
 
 let TestUrl = 'http://localhost:3000/api'
-let BaseURL = 'https://huowenxuan.leanapp.cn/api' // 正式
+let BaseURL = 'http://207.246.86.58/api' // 正式
 let WebUrl = 'https://tamer.luxiaoquan.com'
 
 // BaseURL = TestUrl
