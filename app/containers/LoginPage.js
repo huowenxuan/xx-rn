@@ -37,8 +37,9 @@ import * as utils from '../utils'
 import Permissions from '../utils/Permissions'
 import FastImage from 'react-native-fast-image'
 import * as images from '../images'
-
+import API from '../services/API'
 import {SCREEN_WIDTH} from '../const'
+import * as Storage from '../utils/storage'
 
 const {page} = HOC
 type Props = FlowTypes.Container & {}
@@ -51,11 +52,19 @@ export default class extends PureComponent<Props, State> {
     this.state = {
       title: '',
       category: '',
-      images: []
+      images: [],
+      xEnable: false
     }
   }
 
   componentDidMount() {
+    // Storage.saveX()
+    Storage.loadX().then((x) => {
+      if (x) {
+        this.setState({xEnable: true})
+      }
+    })
+
     this._query(true)
     this.timer = setInterval(() => {
       const {images} = this.state
@@ -219,14 +228,25 @@ export default class extends PureComponent<Props, State> {
 
     let addZero = (n) => n < 10 ? `0${n}` : n
     let day = dayjs(updatedAt)
-    let time = `${addZero(day.month() + 1)}-${addZero(day.date())} ${addZero(day.hour())}:${addZero(day.minute())}`
+    let time = updatedAt
+      ? `${addZero(day.month() + 1)}-${addZero(day.date())} ${addZero(day.hour())}:${addZero(day.minute())}`
+      : ''
 
     return (
       <Header transparent>
+        <Left/>
         <Body>
         <Title>{category} {title}</Title>
         <Subtitle>{time}</Subtitle>
         </Body>
+
+        <Right>
+          {!!this.state.xEnable && <Button transparent onPress={() => this.props.router.toX()}>
+            <Text>
+              ·
+            </Text>
+          </Button>}
+        </Right>
       </Header>
     )
   }
@@ -257,7 +277,7 @@ export default class extends PureComponent<Props, State> {
               <Icon name="weibo" type='FontAwesome'/>
             </Button>
             <Button
-              onPress={() => utils.openBrowser('https://huowenxuan.leanapp.cn/api/vogue/page')}
+              onPress={() => utils.openBrowser(API.voguePage)}
               style={{backgroundColor: '#409AE2'}}>
               <Icon name="web" type='MaterialCommunityIcons'/>
             </Button>

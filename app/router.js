@@ -9,6 +9,7 @@ import {
 import _ from 'lodash'
 
 import LoginPage from './containers/LoginPage'
+import XPage from './containers/XPage'
 
 export let _navigator;
 
@@ -18,6 +19,7 @@ export function setNavigatorRef(navigatorRef) {
 
 const scenes = {
   Login: {screen: LoginPage},
+  X: {screen: XPage},
 }
 
 export const Navigator = (initialRouteName) => createStackNavigator(
@@ -55,6 +57,7 @@ function push(routeName, params) {
 
 const router = {
   pop,
+  toX: ()=>push('X')
 }
 
 export default router

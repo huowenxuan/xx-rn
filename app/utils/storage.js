@@ -26,7 +26,7 @@ export const saveAuth = async (userInfo, token) => {
 let _load = async (key) => {
   try {
     return await storage.load({key})
-  } catch(e) {
+  } catch (e) {
     return null
   }
 }
@@ -40,3 +40,13 @@ export const clearAuth = () => {
   return storage.remove({key: KEY.Auth})
 }
 
+export const saveX = async () => {
+  await storage.save({
+    key: 'X',
+    data: {
+      x: true
+    }
+  })
+}
+
+export const loadX = ()=>_load('X')

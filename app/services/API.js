@@ -9,6 +9,8 @@ let WebUrl = 'https://tamer.luxiaoquan.com'
 // BaseURL = TestUrl
 
 module.exports = {
+  voguePage: BaseURL + '/vogue/page',
+
   queryVogue: BaseURL + '/vogue/query',
   deleteVogue: BaseURL + '/vogue/delete'
 };

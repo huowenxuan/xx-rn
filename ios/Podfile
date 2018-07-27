@@ -12,4 +12,6 @@ target 'xx' do
 
   pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
 end

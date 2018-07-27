@@ -6,7 +6,6 @@ import {
 let UtilsManager = NativeModules.UtilsManager;
 
 export const delay = time => new Promise(resolve => setTimeout(resolve, time))
-
 export function openBrowser(url) {
   if (!url.startsWith('http')) {
     url = 'http://' + url
