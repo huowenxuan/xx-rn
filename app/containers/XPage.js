@@ -37,7 +37,7 @@ import Permissions from '../utils/Permissions'
 import FastImage from 'react-native-fast-image'
 import * as images from '../images'
 import API from '../services/API'
-import {SCREEN_WIDTH} from '../const'
+import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../const'
 
 const {page} = HOC
 type Props = FlowTypes.Container & {}
@@ -62,7 +62,10 @@ export default class extends PureComponent<Props, State> {
   takePicture = async function () {
     console.log('camera')
     if (this.camera) {
-      const options = {quality: 0.5};
+      const options = {
+        forceUpOrientation: true,
+        quality: 1
+      };
       const data = await this.camera.takePictureAsync(options)
       console.log(data)
       let uri = data.uri.replace('file://', '')
@@ -113,8 +116,11 @@ export default class extends PureComponent<Props, State> {
 
 const styles = StyleSheet.create({
   camera: {
+    transform: [{ scaleX: -1 }],
     flexDirection: 'column',
     position: 'absolute',
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
     left: 0,
     right: 0,
     bottom: 0,
