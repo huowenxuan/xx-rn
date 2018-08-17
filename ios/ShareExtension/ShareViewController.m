@@ -59,7 +59,7 @@
 }
 
 - (void)upload: (NSString *)urlStr {
-  NSString *host = @"http://207.246.86.58";
+  NSString *host = @"http://www.huowenxuan.top";
   NSString *testHost = @"http://localhost:3000";
   
   // stringByAddingPercentEncodingWithAllowedCharacters 会自动转换这些

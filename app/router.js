@@ -8,7 +8,7 @@ import {
 } from 'react-navigation'
 import _ from 'lodash'
 
-import LoginPage from './containers/LoginPage'
+import VoguePage from './containers/VoguePage'
 import XPage from './containers/XPage'
 
 export let _navigator;
@@ -18,7 +18,7 @@ export function setNavigatorRef(navigatorRef) {
 }
 
 const scenes = {
-  Login: {screen: LoginPage},
+  Vogue: {screen: VoguePage},
   X: {screen: XPage},
 }
 

@@ -11,7 +11,9 @@ YellowBox.ignoreWarnings([
   'Module AudioRecorderManager requires main queue setup',
   'Module RCTVideoManager requires main queue setup',
   'Class RCTCxxModule was not exported',
-  'RCTBridge required dispatch_sync to load RCTDevLoadingView.'
+  'RCTBridge required dispatch_sync to load RCTDevLoadingView.',
+
+  'You are setting the style `{ direction: ... }`'
 ])
 
 if (!__DEV__) {

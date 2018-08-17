@@ -8,6 +8,7 @@ import globalStyles from './globalStyles'
 import ActionSheet from './ActionSheet'
 import * as FlowTypes from './FlowTypes'
 import FadeInImage from './FadeInImage'
+import ProgressiveImage from './ProgressiveImage'
 
 module.exports = {
   HOC,
@@ -18,7 +19,8 @@ module.exports = {
   Alert,
   globalStyles,
   ActionSheet,
-  FadeInImage
+  FadeInImage,
+  ProgressiveImage
 }
 
 // export {

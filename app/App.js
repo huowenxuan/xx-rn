@@ -11,7 +11,7 @@ import {Root} from "native-base";
 
 type Props = {}
 export default class App extends PureComponent<Props> {
-  navigator = Navigator('Login')
+  navigator = Navigator('Vogue')
 
   constructor(props: Props) {
     super(props)
