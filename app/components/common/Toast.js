@@ -20,14 +20,16 @@ class OverlayViewToast extends OverlayView {
     super(props)
     this.state = {
       fadeOpacity: new Animated.Value(0),
-      translateY: new Animated.Value(SCREEN_HEIGHT + 50)
+      // translateY: new Animated.Value(SCREEN_HEIGHT + 50)
+      translateY: new Animated.Value(-50)
     }
   }
 
   appear() {
     Animated.parallel([
       Animated.spring(this.state.translateY, {
-        toValue: SCREEN_HEIGHT - 120,
+        // toValue: SCREEN_HEIGHT - 120,
+        toValue: 50,
         speed: 12,
         bounciness: 8,
         useNativeDriver: true

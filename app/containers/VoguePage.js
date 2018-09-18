@@ -19,7 +19,7 @@ import {
   Text, Fab, Label,
   Container, Thumbnail,
   Content, Header, Badge, DeckSwiper, Card, CardItem,
-  Body, Title, Toast, Subtitle, Right, Icon, Left
+  Body, Title, Subtitle, Right, Icon, Left
 } from 'native-base'
 
 import {
@@ -29,7 +29,8 @@ import {
   FlowTypes,
   ActionSheet,
   FadeInImage,
-  ProgressiveImage
+  ProgressiveImage,
+  Toast
 } from '../components/common'
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import _ from 'lodash'
@@ -90,175 +91,19 @@ export default class extends PureComponent<Props, State> {
     clearInterval(this.timer)
   }
 
-  showToast(text, type = 'success') {
-    Toast.show({
-      text,
-      buttonText: 'Okay',
-      type,
-      duration: 3000,
-      position: 'top'
-    })
-  }
-
   _query = async (isRefresh) => {
     isRefresh && this.setState({isRefreshing: true})
-
-    // let images = [
-    //   {
-    //     filename: 'Ganni_001.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_001.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_002.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_002.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_003.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_003.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_004.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_004.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_005.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_005.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_006.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_006.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_007.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_007.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_008.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_008.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_009.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_009.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_010.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_010.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_011.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_011.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_012.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_012.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_013.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_013.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_014.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_014.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_015.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_015.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_016.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_016.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_017.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_017.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_018.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_018.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_019.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_019.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_020.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_020.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_021.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_021.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_022.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_022.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_023.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_023.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_024.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_024.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_025.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_025.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_026.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_026.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_027.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_027.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_028.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_028.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_029.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_029.jpg'
-    //   },
-    //   {
-    //     filename: 'Ganni_030.jpg',
-    //     url: 'http://pdl4ed6yf.bkt.clouddn.com/Ganni_030.jpg'
-    //   }]
-    // let title = 'Ganni'
-    // let category = 'Copenhagen Spring 2019'
-    // let updatedAt = '2018-08-17T05:00:38.016Z'
-    // this.setState({images, title, category, updatedAt})
-    // isRefresh && this.setState({isRefreshing: false})
-    // return;
-
     try {
       const {dispatch, types, router} = this.props
       let res = await dispatch(types.vogue.query)
       const {images, category, title, updatedAt} = res
       this.setState({category, title, images, updatedAt})
       isRefresh && this.setState({isRefreshing: false})
-      this.showToast(`${images.length} pictures`)
+      Toast.show(`${images.length} pictures`)
     } catch (e) {
       isRefresh && this.setState({isRefreshing: false})
-      this.showToast('查询失败', 'danger')
+      Toast.show('查询失败')
     }
-  }
-
-  _delete = async () => {
-    let doDelete = async () => {
-      try {
-        const {dispatch, types, router} = this.props
-        await dispatch(types.vogue.delete)
-        this.showToast('删除成功')
-        this._query()
-      } catch (e) {
-        this.showToast('删除失败', 'danger')
-      }
-    }
-    Alert.alert('删除？', '', [
-      {text: '是', onPress: doDelete},
-      {text: '否'}
-    ])
   }
 
   _openWeibo = () => {
@@ -272,7 +117,7 @@ export default class extends PureComponent<Props, State> {
 
     let str = `${category} ${title}`
     Clipboard.setString(str)
-    this.showToast(`拷贝 ${str} 到剪贴板`)
+    Toast.show(`拷贝 ${str} 到剪贴板`)
   }
 
   _save9 = async () => {
@@ -282,16 +127,16 @@ export default class extends PureComponent<Props, State> {
     let index = 0
     for (let image of nineImages) {
       index++
-      this.showToast(`正在下载第${index}张图片`)
+      Toast.show(`正在下载第${index}张图片`)
       await CameraRoll.saveToCameraRoll(image.url)
     }
-    this.showToast('保存成功')
+    Toast.show('保存成功')
   }
 
   async saveImage(url) {
     await Permissions.requestPhotoAndExternalStorage()
     await CameraRoll.saveToCameraRoll(url)
-    this.showToast('保存成功')
+    Toast.show('保存成功')
   }
 
   _renderHeader() {
@@ -395,22 +240,6 @@ export default class extends PureComponent<Props, State> {
             >
               <Icon style={styles.fabIconStyle} name="weibo" type='FontAwesome'/>
             </OpacityButton>
-
-            <OpacityButton
-              rounded
-              onPress={() => utils.openBrowser(API.voguePage)}
-              style={[{backgroundColor: '#409AE2'}, styles.fabStyle]}
-            >
-              <Icon style={styles.fabIconStyle} name="web" type='MaterialCommunityIcons'/>
-            </OpacityButton>
-
-            <OpacityButton
-              rounded
-              onPress={this._delete}
-              style={[{backgroundColor: '#DD5144'}, styles.fabStyle]}
-            >
-              <Icon style={styles.fabIconStyle} name="trash" type={'Entypo'}/>
-            </OpacityButton>
           </Animated.View>
 
           {title || (
@@ -462,7 +291,7 @@ let styles = CustomSS.create({
   },
   loading: {
     position: 'absolute',
-    left: 0, top: 0, right: 0, bottom: 0,
+    left: 0, top: 60, right: 0, bottom: 0,
     alignItems: 'center',
     justifyContent: 'center'
   },

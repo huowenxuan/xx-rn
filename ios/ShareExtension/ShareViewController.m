@@ -9,7 +9,7 @@
 #import "ShareViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 @interface ShareViewController ()
-
+@property(assign, nonatomic) BOOL url;
 @end
 
 @implementation ShareViewController
@@ -38,15 +38,23 @@
       
     } else if([dataType isEqualToString:@"public.plain-text"]){
       [provider loadItemForTypeIdentifier:dataType options:nil completionHandler:^(NSString *plainStr, NSError *error) {
-        // vogue的url保存在text中，奇怪
         if ([plainStr containsString:@"https://"]) {
-          [self upload: plainStr];
+          if (!self.url) {
+            self.url = plainStr;
+            [self upload: plainStr];
+          }
         }
         NSLog(@"text %@", plainStr);
       }];
     } else if([dataType isEqualToString:@"public.url"]){
       dispatch_group_enter(group);
       [provider loadItemForTypeIdentifier:dataType options:nil completionHandler:^(NSURL *url, NSError *error) {
+        if ([url.absoluteString containsString:@"https://"]) {
+          if (!self.url) {
+            self.url = url.absoluteString;
+            [self upload: url.absoluteString];
+          }
+        }
         NSLog(@"url %@", url);
         dispatch_group_leave(group);
       }];
@@ -59,24 +67,16 @@
 }
 
 - (void)upload: (NSString *)urlStr {
-  NSString *host = @"http://www.huowenxuan.top";
-  NSString *testHost = @"http://localhost:3000";
+  NSString *host = @"https://www.huowenxuan.top/api/vogue/start";
+//  NSString *host = @"http://localhost:7001/api/vogue/start";
   
-  // stringByAddingPercentEncodingWithAllowedCharacters 会自动转换这些
-//  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"#" withString:@"%23"];
-//  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"%" withString:@"%25"];
-  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
-  urlStr = [urlStr stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
-  urlStr = [urlStr stringByReplacingOccurrencesOfString:@"=" withString:@"%3D"];
-  urlStr = [NSString stringWithFormat:@"%@/api/vogue/start?url=%@", host, urlStr];
-  
-  NSLog(@"%@", urlStr);
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString: host]];
+  [request setHTTPMethod:@"POST"];
 
-  NSURL *url = [NSURL URLWithString: [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+  NSString *parmStr = [NSString stringWithFormat:@"url=%@", urlStr];
+  NSData *pramData = [parmStr dataUsingEncoding:NSUTF8StringEncoding];
+  [request setHTTPBody:pramData];
   
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
   NSURLSession *session = [NSURLSession sharedSession];
   NSURLSessionDataTask *dataTask=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     NSString *res = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];

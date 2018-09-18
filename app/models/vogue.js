@@ -34,15 +34,6 @@ export default {
         yield put(createAction(types.updateState)({vogue: data}))
       }
     },
-    * [types.delete]({payload, resolve, reject}, {call, put}) {
-      const {error, data} = yield call(Request.post, API.deleteVogue)
-      if (error) {
-        reject(error)
-      } else {
-        resolve(data)
-        yield put(createAction(types.updateState)({vogue: {}}))
-      }
-    },
   },
   subscriptions: {
     setup({dispatch}) {
